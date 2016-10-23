@@ -15,13 +15,13 @@ public class Main {
 		
 		//System.out.println("-------------------------------------");
 		
-		for(int i = 0; i < 127; i++){
+		for(int i = 0; i < 125; i++){
 			//darwin.crossing(darwin.getLastGeneration());
 			darwin.enemyEvolution();
 			System.out.println("i: " +  i + "\n");
 			//darwin.showEnemies(darwin.getLastGeneration());
 			System.out.println("largo de la ultima gen: " +  darwin.getLengthLastGeneration() + "\n");
-			//if (i == 127)
+			//if (i == 125)
 				//System.out.println("-------------------------------------");
 				//darwin.showEnemies(darwin.getLastWarriors());
 				//System.out.println("-------------------------------------");
