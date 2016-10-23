@@ -13,18 +13,22 @@ public class Main {
 		darwin.createPopulation();
 		darwin.showEnemies(darwin.getLastGeneration());
 		
-		System.out.println("-------------------------------------");
+		//System.out.println("-------------------------------------");
 		
-		for(int i = 0; i <= 107; i++){
+		for(int i = 0; i < 127; i++){
 			//darwin.crossing(darwin.getLastGeneration());
 			darwin.enemyEvolution();
 			System.out.println("i: " +  i + "\n");
-			darwin.showEnemies(darwin.getLastGeneration());
+			//darwin.showEnemies(darwin.getLastGeneration());
 			System.out.println("largo de la ultima gen: " +  darwin.getLengthLastGeneration() + "\n");
+			//if (i == 127)
+				//System.out.println("-------------------------------------");
+				//darwin.showEnemies(darwin.getLastWarriors());
+				//System.out.println("-------------------------------------");
 
 		}
-		darwin.showEnemies(darwin.getLastWarriors());
-		System.out.println(darwin.getLengthLastWarrior());
+//		darwin.showEnemies(darwin.getLastWarriors());
+//		System.out.println(darwin.getLengthLastWarrior());
 		
 //		Random random = new Random();
 		

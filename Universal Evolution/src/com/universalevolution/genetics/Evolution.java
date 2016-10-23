@@ -412,9 +412,9 @@ public class Evolution {
 			this.crossing(this.getLastGeneration()); /*1. creates a new generation by crossing the last one and insert it at the end in totalPopulation*/
 			
 			double probMutation = randomGenerator.nextDouble();  /*probability that mutation happen happens*/
-			if(probMutation < perMutation) /*if the probability of mutating enters the range of the percentage of mutation, it happens*/
+			if(probMutation < perMutation){ /*if the probability of mutating enters the range of the percentage of mutation, it happens*/
 				this.mutation(getLastGeneration()); /*2. from the last generation just made, mutates one individual from it*/
-			
+			}
 			/*at this stage the latest generation, as a vector, is at the end of th vector totalPopulation and could possibly have mutated*/
 			
 			this.getFittest(getLastGeneration()); /*3. from the last generations picks the fittest Enemies*/
