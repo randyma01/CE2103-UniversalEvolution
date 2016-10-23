@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.stream.IntStream;
 
 import com.universalevolution.genetics.Evolution;
 
@@ -10,37 +11,64 @@ public class Main {
 		Evolution darwin = new Evolution();
 		
 		darwin.createPopulation();
-		System.out.println("Generation: " + darwin.getGenerations());
 		darwin.showEnemies(darwin.getLastGeneration());
-		System.out.println("Lenth Of Last Generation of Warriors: " + darwin.getLengthLastGeneration());
-		System.out.println("===========================================================");
 		
+		System.out.println("-------------------------------------");
 		
-		darwin.enemyEvolution();
-		System.out.println("Generation: " + darwin.getGenerations());
-		darwin.showEnemies(darwin.getLastWarriors());
-		System.out.println("Length Of Last Generation of Warriors: " + darwin.getLengthLastGeneration());
-		System.out.println("===========================================================");
+		for(int i = 0; i <= 107; i++){
+			//darwin.crossing(darwin.getLastGeneration());
+			darwin.enemyEvolution();
+			System.out.println("i: " +  i + "\n");
+			darwin.showEnemies(darwin.getLastGeneration());
+			System.out.println("largo de la ultima gen: " +  darwin.getLengthLastGeneration() + "\n");
 
-
-		darwin.enemyEvolution();
-		System.out.println("Generation: " + darwin.getGenerations());
+		}
 		darwin.showEnemies(darwin.getLastWarriors());
-		System.out.println("Length Of Last Generation of Warriors: " + darwin.getLengthLastGeneration());
-		System.out.println("===========================================================");
+		System.out.println(darwin.getLengthLastWarrior());
 		
-		darwin.enemyEvolution();
-		System.out.println("Generation: " + darwin.getGenerations());
-		darwin.showEnemies(darwin.getLastWarriors());
-		System.out.println("Lenth Of Last Generation of Warriors: " + darwin.getLengthLastGeneration());
-		System.out.println("===========================================================");
+//		Random random = new Random();
 		
+//		int max = 7;
+//		int min = 4;
+//		
+//		for (int i = 0; i<max+7; i++){
+//			int xSpeed = (random.nextInt() % 2 == 0) ? min : max;
+//		
+//			System.out.println("xSpeed: " + xSpeed);
+//		}
 		
-		darwin.enemyEvolution();
-		System.out.println("Generation: " + darwin.getGenerations());
-		darwin.showEnemies(darwin.getLastWarriors());
-		System.out.println("Lenth Of Last Generation of Warrior: " + darwin.getLengthLastGeneration());
-		System.out.println("===========================================================");
+//		darwin.createPopulation();
+//		System.out.println("Generation: " + darwin.getGenerations());
+//		darwin.showEnemies(darwin.getLastGeneration());
+//		System.out.println("Lenth Of Last Generation of Warriors: " + darwin.getLengthLastGeneration());
+//		System.out.println("===========================================================");
+//		
+//		
+//		darwin.enemyEvolution();
+//		System.out.println("Generation: " + darwin.getGenerations());
+//		darwin.showEnemies(darwin.getLastWarriors());
+//		System.out.println("Length Of Last Generation of Warriors: " + darwin.getLengthLastGeneration());
+//		System.out.println("===========================================================");
+//
+//
+//		darwin.enemyEvolution();
+//		System.out.println("Generation: " + darwin.getGenerations());
+//		darwin.showEnemies(darwin.getLastWarriors());
+//		System.out.println("Length Of Last Generation of Warriors: " + darwin.getLengthLastGeneration());
+//		System.out.println("===========================================================");
+//		
+//		darwin.enemyEvolution();
+//		System.out.println("Generation: " + darwin.getGenerations());
+//		darwin.showEnemies(darwin.getLastWarriors());
+//		System.out.println("Lenth Of Last Generation of Warriors: " + darwin.getLengthLastGeneration());
+//		System.out.println("===========================================================");
+//		
+//		
+//		darwin.enemyEvolution();
+//		System.out.println("Generation: " + darwin.getGenerations());
+//		darwin.showEnemies(darwin.getLastWarriors());
+//		System.out.println("Lenth Of Last Generation of Warrior: " + darwin.getLengthLastGeneration());
+//		System.out.println("===========================================================");
 
 		
 		

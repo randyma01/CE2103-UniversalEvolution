@@ -7,7 +7,7 @@ import com.universalevolution.enemys.*;
 
 /**
  * Evolution class implement a genetic algorithm for creating,
- * mantaining, crossing and evolving the Enemy objects. 
+ * Maintaining, crossing and evolving the Enemy objects. 
  *  
  * @author randy
  *
@@ -150,7 +150,7 @@ public class Evolution {
 
 	/**
 	 * Receives a vector full of Enemies. Randomly chooses
-	 * a position from it, from the seleted Enemy randomly 
+	 * a position from it, from the selected Enemy randomly 
 	 * chooses an attribute to change. This new value goes
 	 * from 1 t 10
 	 * @param enemyList
@@ -186,7 +186,7 @@ public class Evolution {
 	 * two Enemies and cross them. The third Enemy is 
 	 * insert on the vector newestEnemies, that it is 
 	 * also inserted at the end of the general vector
-	 * totalPopulation. Uses an auxiliar function 
+	 * totalPopulation. Uses an auxiliary function 
 	 * , createOffspring, which does the actual
 	 * crossing.
 	 * 
@@ -198,8 +198,8 @@ public class Evolution {
 		Vector<Enemy> newestEnemies = new Vector<Enemy>(); /*vector for inserting the newest Enemies*/
 
 		for(int i = 0; i <= length; i++){
-			Enemy enemy1 = enemyList.get(randomGenerator.nextInt(length)); /*1. chossing randonmly from enemyList mate one*/
-			Enemy enemy2 = enemyList.get(randomGenerator.nextInt(length)); /*2. chossing randonmly from enemyList mate two*/
+			Enemy enemy1 = enemyList.get(randomGenerator.nextInt(length)); /*1. choosing randomly from enemyList mate one*/
+			Enemy enemy2 = enemyList.get(randomGenerator.nextInt(length)); /*2. choosing randomly from enemyList mate two*/
 			Enemy enemy3 = this.createOffspring(enemy1, enemy2); /*3. creates a new Enemy*/
 			newestEnemies.add(enemy3); /*4. insert enemy3 on the vector newestEnemies*/
 		}
@@ -236,8 +236,9 @@ public class Evolution {
 			speed = enemy1.getSpeed();
 		}
 		
-		else /*in case that the enemies are not the same, a random bewteen them and their values happen*/
-		{ 
+		/*in case that the enemies are not the same, a random between them and their values happen*/
+		else{ 
+		 
 			String[] possibleNames = {enemy1.getName(), enemy2.getName()}; /*array of the two possible names*/
 			name = possibleNames[randomGenerator.nextInt(2)]; /*chooses randomly a name of the array*/
 			newEnemyType = this.createIdentificator(name); /*identifictor (NewEnemyType) depend on which type of enemy it is*/
@@ -245,40 +246,19 @@ public class Evolution {
 			/*the following verifications validate and chooses the values for the attributes between the two enemies*/
 			
 			/*arrowResistance*/
-			if(enemy1.getArrowResistance() > enemy2.getArrowResistance()){
-				arrowResistance = randomGenerator.nextInt(enemy1.getArrowResistance() - enemy2.getArrowResistance() +1 ) + enemy2.getArrowResistance();
-			}else if (enemy1.getArrowResistance() < enemy2.getArrowResistance()){
-				arrowResistance = randomGenerator.nextInt(enemy2.getArrowResistance() - enemy1.getArrowResistance() +1 ) + enemy1.getArrowResistance();
-			}
+			arrowResistance = (randomGenerator.nextInt() % 2 == 0) ? enemy1.getArrowResistance() : enemy2.getArrowResistance();
+			
 			
 			/*magicResistance*/
-			if(enemy1.getMagicResistance() > enemy2.getMagicResistance()){
-				magicResistance = randomGenerator.nextInt(enemy1.getMagicResistance() - enemy2.getMagicResistance() +1 ) + enemy2.getMagicResistance();
-			}else if (enemy1.getMagicResistance() < enemy2.getMagicResistance()){
-				magicResistance = randomGenerator.nextInt(enemy2.getMagicResistance() - enemy1.getMagicResistance() +1 ) + enemy1.getMagicResistance();
-			}
+			magicResistance = (randomGenerator.nextInt() % 2 == 0) ? enemy1.getMagicResistance() : enemy2.getMagicResistance();
 			
 			/*artilleryResistance*/
-			if(enemy1.getArtilleryResistance() > enemy2.getArtilleryResistance()){
-				artilleryResistance = randomGenerator.nextInt(enemy1.getArtilleryResistance() - enemy2.getArtilleryResistance() +1 ) + enemy2.getArtilleryResistance();
-			}else if (enemy1.getArtilleryResistance() < enemy2.getArtilleryResistance()){
-				artilleryResistance = randomGenerator.nextInt(enemy2.getArtilleryResistance() - enemy1.getArtilleryResistance() +1 ) + enemy1.getArtilleryResistance();
-			}
-			
+			artilleryResistance = (randomGenerator.nextInt() % 2 == 0) ? enemy1.getArtilleryResistance() : enemy2.getArtilleryResistance();
 			
 			/*speed*/
-			if(enemy1.getSpeed() > enemy2.getSpeed()){
-				speed = randomGenerator.nextInt(enemy1.getSpeed() - enemy2.getSpeed() +1 ) + enemy2.getSpeed();
-			}else if (enemy1.getSpeed() < enemy2.getSpeed()){
-				speed = randomGenerator.nextInt(enemy2.getSpeed() - enemy1.getSpeed() +1 ) + enemy1.getSpeed();
-			}
-			
-			
+			speed = (randomGenerator.nextInt() % 2 == 0) ? enemy1.getSpeed() : enemy2.getSpeed();			
 		}
-//		this.verifyAttributes(newEnemyType, arrowResistance, magicResistance, artilleryResistance, speed, name);
-//		this.verifyAttributes(newEnemyType, arrowResistance, magicResistance, artilleryResistance, speed, name);
-//		this.verifyAttributes(newEnemyType, arrowResistance, magicResistance, artilleryResistance, speed, name);
-//		this.verifyAttributes(newEnemyType, arrowResistance, magicResistance, artilleryResistance, speed, name);
+
 
 		Enemy enemy3 = enemyFactory.makeEvolvedEnemies(newEnemyType, arrowResistance, magicResistance, artilleryResistance, speed, name);
 		return enemy3;
@@ -286,7 +266,7 @@ public class Evolution {
 	
 	
 	/**
-	 * Recieves an String, depending from which type
+	 * Receives an String, depending from which type
 	 * of Enemy it represents is set a string called 
 	 * newEnemyType, that works an identificator for 
 	 * the Enemy. Returns the string.
