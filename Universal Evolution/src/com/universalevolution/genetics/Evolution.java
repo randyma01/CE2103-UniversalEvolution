@@ -62,18 +62,36 @@ public class Evolution {
 	}
 	
 	/**
-	 * This method return the information of an Enemy vecto, specifically
-	 * tha last vector from totalWarrios, as whole string (warriorsData). 
-	 * Uses the method sentWarriorAux() as an auxiliar function. 
+	 * This method return the information of an Enemy vector, specifically
+	 * the last vector from totalWarrios, as whole string (warriorsData). 
+	 * Uses the method sentWarriorAux() as an auxiliary function. 
 	 * 
 	 * @return warriorsData
 	 */
-	public String sentWarriors(){
+	public String sentEnemyWarriors(){
 		Vector<Enemy> enemyWarriors = new Vector<Enemy>();
 		enemyWarriors = this.getLastWarriors();
-		String warriorsData = this.sentWarriosAux(enemyWarriors);
+		String warriorsData = this.sentEnemiesAux(enemyWarriors);
 		return warriorsData;
 	}
+	
+	
+	/**
+	 * This method return the information of an Enemy vector, specifically
+	 * the last vector from totalPopulation, as whole string (warriorsData). 
+	 * Uses the method sentEnemiesAux() as an auxiliary function. 
+	 * 
+	 * @return warriorsData
+	 */
+	public String getEnemyPopulation(){
+		Vector<Enemy> enemyPopulation = new Vector<Enemy>();
+		enemyPopulation = this.getLastGeneration();
+		String enemyData = this.sentEnemiesAux(enemyPopulation);
+		return enemyData;
+		
+	}
+	
+	
 
 	/**
 	 * Receives a vector full of Enemies. Read each Enemies'
@@ -83,7 +101,7 @@ public class Evolution {
 	 * @param enemyList
 	 * @return info
 	 */
-	public String sentWarriosAux(Vector<Enemy> enemyList){
+	public String sentEnemiesAux(Vector<Enemy> enemyList){
 		String info = null;
 		Enemy enemyN;
 		int length = enemyList.size();
