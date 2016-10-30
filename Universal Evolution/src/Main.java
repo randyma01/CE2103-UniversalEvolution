@@ -1,6 +1,14 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Random;
 import java.util.stream.IntStream;
 
+import javax.swing.text.Document;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.TransformerException;
 
 import com.universalevolution.genetics.Evolution;
@@ -9,24 +17,41 @@ import com.universalevolution.xml.separador;
 
 public class Main {
 
-	public static void main(String[] args) throws TransformerException {
+	public static void main(String[] args) throws TransformerException, FileNotFoundException, IOException {
 		
 		
-		Evolution darwin = new Evolution();
+//		//public String readFile(String path) throws IOException{
+//	    String path = "/home/randy/generacion1.xml";
+//	    
+//		StringBuilder sb = new StringBuilder();
+//	    try (BufferedReader br = new BufferedReader(new FileReader(path))){
+//	    	String sCurrentLine = br.readLine();
+//
+//	        while (sCurrentLine != null) {
+//	            sb.append(sCurrentLine);
+//	        }
+//
+//	    }
+//
+//	    System.out.println(sb.toString());
+	    
 		
-		separador l = new separador();
 		
-		darwin.createPopulation();
-		
-		String init = darwin.sentEnemy();
-		l.separar(init, 0);
-		
-		for(int i = 1; i<10; i++){
-			String cadena= "";
-			darwin.enemyEvolution();
-			cadena = darwin.sentEnemy();
-			l.separar(cadena, i);
-		}
+//		Evolution darwin = new Evolution();
+//		
+//		separador l = new separador();
+//		
+//		darwin.createPopulation();
+//		
+//		String init = darwin.sentEnemy();
+//		l.separar(init, 0);
+//		
+//		for(int i = 1; i<10; i++){
+//			String cadena= "";
+//			darwin.enemyEvolution();
+//			cadena = darwin.sentEnemy();
+//			l.separar(cadena, i);
+//		}
 		//darwin.showEnemies(darwin.getLastWarriors());
 		
 //		darwin.enemyEvolution();
