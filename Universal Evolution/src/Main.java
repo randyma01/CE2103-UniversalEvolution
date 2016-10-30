@@ -1,32 +1,42 @@
 import java.util.Random;
 import java.util.stream.IntStream;
 
+import javax.xml.transform.TransformerException;
+
 import com.universalevolution.genetics.Evolution;
+import com.universalevolution.xml.XMLgenerations;
+import com.universalevolution.xml.separador;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws TransformerException {
 		
 		
 		Evolution darwin = new Evolution();
 		
-		darwin.createPopulation();
-		darwin.showEnemies(darwin.getLastGeneration());
+		XMLgenerations f = new XMLgenerations("generacion1");
 		
-		//System.out.println("-------------------------------------");
+		separador l = new separador();
 		
-		for(int i = 0; i < 125; i++){
-			//darwin.crossing(darwin.getLastGeneration());
-			darwin.enemyEvolution();
-			System.out.println("i: " +  i + "\n");
-			//darwin.showEnemies(darwin.getLastGeneration());
-			System.out.println("largo de la ultima gen: " +  darwin.getLengthLastGeneration() + "\n");
-			//if (i == 125)
-				//System.out.println("-------------------------------------");
-				//darwin.showEnemies(darwin.getLastWarriors());
-				//System.out.println("-------------------------------------");
+		l.separar("O,2,3,4,5,5,H,8,7,4,5,6");
+		
+//		darwin.createPopulation();
+//		darwin.showEnemies(darwin.getLastGeneration());
+//		
+//		//System.out.println("-------------------------------------");
+//		
+//		for(int i = 0; i < 125; i++){
+//			//darwin.crossing(darwin.getLastGeneration());
+//			darwin.enemyEvolution();
+//			System.out.println("i: " +  i + "\n");
+//			//darwin.showEnemies(darwin.getLastGeneration());
+//			System.out.println("largo de la ultima gen: " +  darwin.getLengthLastGeneration() + "\n");
+//			//if (i == 125)
+//				//System.out.println("-------------------------------------");
+//				//darwin.showEnemies(darwin.getLastWarriors());
+//				//System.out.println("-------------------------------------");
 
-		}
+//		}
 //		darwin.showEnemies(darwin.getLastWarriors());
 //		System.out.println(darwin.getLengthLastWarrior());
 		
