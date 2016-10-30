@@ -68,7 +68,7 @@ public class Evolution {
 	 * 
 	 * @return warriorsData
 	 */
-	public String sentEnemyWarriors(){
+	public String sentEnemy(){
 		Vector<Enemy> enemyWarriors = new Vector<Enemy>();
 		enemyWarriors = this.getLastWarriors();
 		String warriorsData = this.sentEnemiesAux(enemyWarriors);
@@ -102,19 +102,19 @@ public class Evolution {
 	 * @return info
 	 */
 	public String sentEnemiesAux(Vector<Enemy> enemyList){
-		String info = null;
+		String info = "";
 		Enemy enemyN;
 		int length = enemyList.size();
 		for(int i =0; i<length; i++){
 			enemyN = enemyList.get(i);
 			String tempInfo;
-			String name = enemyN.getName();
+			String name = this.createIdentificator(enemyN.getName());
 			int life = enemyN.getLife();
 			int arrowResistance = enemyN.getArrowResistance();
 			int magicResistance = enemyN.getMagicResistance();
 			int artilleryResistance = enemyN.getArtilleryResistance();
 			int speed = enemyN.getSpeed();
-			tempInfo = "Name: " + name + ", " + "Life: " + life + ", " + "ArrowResistance: " + arrowResistance + ", " + "MagicResistance: " + magicResistance + ", " + "ArtilleryResistance: " + artilleryResistance + ", " + "Speed: " + speed;
+			tempInfo = name + ", " + life + ", " + arrowResistance + ", " + magicResistance + ", " + artilleryResistance + ", " + speed + ",";
 			info += tempInfo;
 		}
 		return info;
@@ -424,14 +424,7 @@ public class Evolution {
 				reinforcements++; /*add one more Enemy*/
 			
 			ability++;
+			
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 }
