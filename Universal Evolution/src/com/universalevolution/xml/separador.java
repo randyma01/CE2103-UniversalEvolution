@@ -12,7 +12,7 @@ import javax.xml.transform.TransformerException;
 public class separador {
 
 	String arrayParameter[] = {"", "", "", "", "", ""};
-	XMLgenerations f = new XMLgenerations("generacion");
+	//XMLgenerations f = new XMLgenerations("generacion");
 		
 	
 	/**
@@ -21,25 +21,26 @@ public class separador {
 	 * @param xml
 	 * @throws TransformerException
 	 */
-	public void separar(String xml) throws TransformerException{
-	String delimiter = ",";
-	int pos = 0;
-	int cantidad = 0;
-	String[] tokens = xml.split(delimiter);
-	while(pos < tokens.length){
-		for (int i = 0; i < 6; i++){
-			while(true){
-				arrayParameter[i] = tokens[pos];
-				pos++;
-				if (i < 6){
-					break;
+	public void separar(String xml, int genNum) throws TransformerException{
+		
+		XMLgenerations f = new XMLgenerations("generacion" + genNum);
+		String delimiter = ",";
+		int pos = 0;
+		int cantidad = 0;
+		String[] tokens = xml.split(delimiter);
+		while(pos < tokens.length){
+			for (int i = 0; i < 6; i++){
+				while(true){
+					arrayParameter[i] = tokens[pos];
+					pos++;
+					if (i < 6){
+						break;
+					}
 				}
 			}
-		}
 		f.añadirGen(arrayParameter);
 		System.out.println("Cantidad enemigos " + cantidad);
 		cantidad++;
+		}
 	}
-	
-}
 }

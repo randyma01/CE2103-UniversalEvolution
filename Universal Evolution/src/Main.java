@@ -14,11 +14,37 @@ public class Main {
 		
 		Evolution darwin = new Evolution();
 		
-		XMLgenerations f = new XMLgenerations("generacion1");
-		
 		separador l = new separador();
 		
-		l.separar("O,2,3,4,5,5,H,8,7,4,5,6");
+		darwin.createPopulation();
+		
+		String init = darwin.sentEnemy();
+		l.separar(init, 0);
+		
+		for(int i = 1; i<10; i++){
+			String cadena= "";
+			darwin.enemyEvolution();
+			cadena = darwin.sentEnemy();
+			l.separar(cadena, i);
+		}
+		//darwin.showEnemies(darwin.getLastWarriors());
+		
+//		darwin.enemyEvolution();
+//		String first = darwin.sentEnemy();
+//		System.out.println(first);
+//		//darwin.showEnemies(darwin.getLastGeneration());
+//		
+//		darwin.enemyEvolution();
+//		String second = darwin.sentEnemy();
+//		System.out.println(second);
+//		//darwin.showEnemies(darwin.getLastGeneration());
+		
+		
+//		l.separar(init,0);
+//		l.separar(first,1);
+//		l.separar(second,2);
+		
+		//l.separar("O,2,3,4,5,5");
 		
 //		darwin.createPopulation();
 //		darwin.showEnemies(darwin.getLastGeneration());

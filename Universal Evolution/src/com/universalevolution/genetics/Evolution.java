@@ -28,16 +28,14 @@ public class Evolution {
 	double perReinforcements = 0.5; /*pecentage for adding new Enemies sent for war*/
 	
 	Vector <Vector<Enemy>> totalPopulation = new Vector <Vector<Enemy>>(); /*vector that contins all the population*/
-	Vector <Vector<Enemy>> totalWarriors = new Vector <Vector<Enemy>>(); /*vector that contins all Enemies sent to war*/
+	Vector <Enemy> totalWarriors = new Vector <Enemy>(); /*vector that contins all Enemies sent to war*/
 	
 	public Vector<Vector<Enemy>> getTotalPopulation(){return totalPopulation;}
-	public Vector<Vector<Enemy>> getTotalWarriors(){return totalWarriors;}
+	public Vector<Enemy> getTotalWarriors(){return totalWarriors;}
 	
 	public  Vector<Enemy> getLastGeneration(){return totalPopulation.lastElement();}
-	public  Vector<Enemy> getLastWarriors(){return totalWarriors.lastElement();}
 	
 	public int getLengthLastGeneration(){return this.getLastGeneration().size();}
-	public int getLengthLastWarrior(){return this.getLastWarriors().size();}
 	
 	public int getGenerations(){return generations;}
 	
@@ -69,9 +67,8 @@ public class Evolution {
 	 * @return warriorsData
 	 */
 	public String sentEnemy(){
-		Vector<Enemy> enemyWarriors = new Vector<Enemy>();
-		enemyWarriors = this.getLastWarriors();
-		String warriorsData = this.sentEnemiesAux(enemyWarriors);
+		
+		String warriorsData = this.sentEnemiesAux(this.getLastGeneration());
 		return warriorsData;
 	}
 	
@@ -289,51 +286,48 @@ public class Evolution {
 	}
 	
 
-	public void getFittest(Vector<Enemy> enemyList){
+	public Vector<Enemy> getFittest(){
+		Vector<Enemy> warriors = new Vector<Enemy>();
+		return warriors;
 		
-		Vector<Enemy> fittestEnemies = new Vector<Enemy>(); /*vector which contains the fittest Enemies from enemyLIst*/
-		int length = enemyList.size(); /*length of the enemyList*/
+	}
+	
+	
+	public void chooseFittest(){
+		
+		int lengthTotalPopulation = totalPopulation.size(); /*length of the enemyList*/
 		Enemy enemy; 
 		
-		for(int i = 0; i < length; i++){
-			enemy = enemyList.get(i);
-			if(enemy.getName().equals("Elf")){
-				if (this.compareFitnesElf(enemy)){
-					if(fittestEnemies.size() == 16 + reinforcements){
-						break;
-					}else{
-						fittestEnemies.add(enemy);
+		for(int i = 0; i <= lengthTotalPopulation; i++){
+			Vector<Enemy> vector = new Vector<Enemy>();
+			vector = totalPopulation.get(i);
+			
+			for(int j = 0; j <= vector.size(); j++ ){
+				Vector<Enemy> Vector2 = new Vector<Enemy>();
+				Vector2 = totalPopulation.get(i);
+				enemy = Vector2.get(j);
+				
+				if(enemy.getName().equals("Elf")){
+					if (this.compareFitnesElf(enemy)){
+						totalWarriors.add(enemy);
 					}
-				}
-			}else if(enemy.getName().equals("Harpy")){
-				if (this.compareFitnesHarpy(enemy)){
-					if(fittestEnemies.size() == 16 + reinforcements){
-						break;
-					}else{
-						fittestEnemies.add(enemy);
+					
+				}else if(enemy.getName().equals("Harpy")){
+					if (this.compareFitnesHarpy(enemy)){
+						totalWarriors.add(enemy);
+						}
+				}else if (enemy.getName().equals("Mercenary")){
+					if (this.compareFitnesMercenary(enemy)){
+						totalWarriors.add(enemy);
 					}
-				}
-			}else if (enemy.getName().equals("Mercenary")){
-				if (this.compareFitnesMercenary(enemy)){
-					if(fittestEnemies.size() == 16 + reinforcements){
-						break;
-					}else{
-						fittestEnemies.add(enemy);
-					}
-				}
-			}else if(enemy.getName().equals("Ogre")){
-				if (this.compareFitnesOgre(enemy)){
-					fittestEnemies.add(enemy);
-					if(fittestEnemies.size() == 16 + reinforcements){
-						break;
-					}else{
-						fittestEnemies.add(enemy);
+				}else if(enemy.getName().equals("Ogre")){
+					if (this.compareFitnesOgre(enemy)){
+							totalWarriors.add(enemy);
 					}
 				}
 			}
 		}
 		System.out.println("***Finnest Warriors!***");
-		totalWarriors.add(fittestEnemies);
 	}
 	
 	
@@ -417,7 +411,7 @@ public class Evolution {
 			}
 			/*at this stage the latest generation, as a vector, is at the end of th vector totalPopulation and could possibly have mutated*/
 			
-			this.getFittest(getLastGeneration()); /*3. from the last generations picks the fittest Enemies*/
+			//this.chooseFittest(); /*3. from the last generations picks the fittest Enemies*/
 			
 			double probReinforcements = randomGenerator.nextDouble(); /*probability that more reinforcements are added*/
 			if(probReinforcements < perReinforcements)/*if the probability of more reinforcements enters the range of more reinforcements it happens*/
