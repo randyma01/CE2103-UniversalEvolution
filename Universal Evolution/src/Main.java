@@ -20,15 +20,15 @@ public class Main{
     	Evolution darwin = new Evolution();
     	XMLManager xmlController = new XMLManager();
     	
-    	darwin.createPopulation();
-    	darwin.enemyEvolution();
-    	darwin.enemyEvolution();
-    	darwin.enemyEvolution();
-    	darwin.enemyEvolution();
-    	darwin.enemyEvolution();
-    	
-    	xmlController.XMLFileWriter(darwin.sentEnemy(), 5);
-    	xmlController.XMLFileReader();
+//    	darwin.createPopulation();
+//    	darwin.enemyEvolution();
+//    	darwin.enemyEvolution();
+//    	darwin.enemyEvolution();
+//    	darwin.enemyEvolution();
+//    	darwin.enemyEvolution();
+//    	
+//    	xmlController.XMLFileWriter(darwin.sentEnemy(), 5);
+    	xmlController.XMLFileReader(5);
     
     	
 //    	try {

@@ -60,16 +60,18 @@ public class XMLManager {
 	/**
 	 * It reads an XML with the generation data, keep and 
 	 * save the values of each enemy and returns them as
-	 * a String. 
+	 * a String. The parameter number (int) is the number
+	 * of which generation XML File to read.
 	 * 
 	 * Based on the code taken from: http://www.codecoffee.com/articles/xml1.html
 	 * 
+	 * @param number
 	 * @return enemies
 	 */
-	public String XMLFileReader(){
+	public String XMLFileReader(int number){
 		String genEneiesData = ""; /*String for all the data*/
 		try {
-    		File file = new File("/home/randy/git/Universal-Evolution/Universal Evolution/generation4.xml"); 
+    		File file = new File("/home/randy/git/Universal-Evolution/Universal Evolution/generation" + number + ".xml"); 
             DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
             Document doc = docBuilder.parse (file); 
