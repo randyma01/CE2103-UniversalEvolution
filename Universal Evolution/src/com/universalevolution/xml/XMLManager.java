@@ -33,7 +33,7 @@ public class XMLManager {
 	 */
 	public void XMLFileWriter(String xml, int genNum) throws TransformerException{
 		
-		XMLGenerations f = new XMLGenerations("generacion" + genNum);
+		XMLGenerations f = new XMLGenerations("generation" + genNum);
 		String delimiter = ",";
 		int pos = 0;
 		int cantidad = 0;
@@ -65,7 +65,7 @@ public class XMLManager {
 	public String XMLFileReader(){
 		String enemies = "";
 		try {
-    		File file = new File("/home/randy/generacion3.xml"); 
+    		File file = new File("/home/randy/git/Universal-Evolution/Universal Evolution/generation4.xml"); 
             DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
             Document doc = docBuilder.parse (file); 
