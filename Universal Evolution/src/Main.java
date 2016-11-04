@@ -25,8 +25,9 @@ public class Main{
     	darwin.enemyEvolution();
     	darwin.enemyEvolution();
     	darwin.enemyEvolution();
+    	darwin.enemyEvolution();
     	
-    	xmlController.XMLFileWriter(darwin.sentEnemy(), 4);
+    	xmlController.XMLFileWriter(darwin.sentEnemy(), 5);
     	xmlController.XMLFileReader();
     
     	

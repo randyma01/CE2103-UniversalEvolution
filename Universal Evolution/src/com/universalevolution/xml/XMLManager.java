@@ -15,20 +15,22 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
 /**
- * Separates elements inside the String. 
+ * Class for writing and reader XML Files. Uses th 
  * 
- * @autor Fernanda, Ricardo on 15/09/16.
+ * @author Fernanda, Ricardo, Randy on 15/09/16. (Updated: 3/10/16).
  */
 public class XMLManager {
 
 	String arrayParameter[] = {"", "", "", "", "", ""};
-	//XMLgenerations f = new XMLgenerations("generacion");
 		
-	
 	/**
-	 * Separate the characters inside a String.
+	 * Separate the characters inside a String. Creates
+	 * an XML file with the data from the string following
+	 * the tags of the data. The genNum (int) parameter
+	 * is the number of the generation.
 	 * 
 	 * @param xml
+	 * @params genNum
 	 * @throws TransformerException
 	 */
 	public void XMLFileWriter(String xml, int genNum) throws TransformerException{
@@ -48,7 +50,7 @@ public class XMLManager {
 					}
 				}
 			}
-		f.añadirGen(arrayParameter);
+		f.addGen(arrayParameter);
 		System.out.println("Cantidad enemigos " + cantidad);
 		cantidad++;
 		}
@@ -60,10 +62,12 @@ public class XMLManager {
 	 * save the values of each enemy and returns them as
 	 * a String. 
 	 * 
+	 * Based on the code taken from: http://www.codecoffee.com/articles/xml1.html
+	 * 
 	 * @return enemies
 	 */
 	public String XMLFileReader(){
-		String enemies = "";
+		String genEneiesData = ""; /*String for all the data*/
 		try {
     		File file = new File("/home/randy/git/Universal-Evolution/Universal Evolution/generation4.xml"); 
             DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -79,9 +83,9 @@ public class XMLManager {
              NodeList listOfElfs = doc.getElementsByTagName("Elfos");
              NodeList listOfMercenaries = doc.getElementsByTagName("Mercenarios");
             
-            /*---Ogre---*/
+            /*Loop for the listOfOgres. Recover all data into ogresData (String) and concatenates on the genEnemiesData (String).*/
             for(int s=0; s<listOfOgres.getLength() ; s++){
-            	String ogre = "O,";
+            	String ogresData = "O,";
 
                 Node firstOgreNode = listOfOgres.item(s);
                 if(firstOgreNode.getNodeType() == Node.ELEMENT_NODE){
@@ -92,40 +96,39 @@ public class XMLManager {
                     Element firstVidaElement = (Element)vidaList.item(0);
                     NodeList textFNList = firstVidaElement.getChildNodes();
                     System.out.println("vida : " + ((Node)textFNList.item(0)).getNodeValue().trim());
-                    ogre+=((Node)textFNList.item(0)).getNodeValue().trim() + ",";
+                    ogresData+=((Node)textFNList.item(0)).getNodeValue().trim() + ",";
                     
                     NodeList velocidadList = firstOgreElement.getElementsByTagName("velocidad");
                     Element velocidadElement = (Element)velocidadList.item(0);
                     NodeList textLNList = velocidadElement.getChildNodes();
                     System.out.println("velocidad: " + ((Node)textLNList.item(0)).getNodeValue().trim());
-                    ogre+=((Node)textLNList.item(0)).getNodeValue().trim() + ",";
+                    ogresData+=((Node)textLNList.item(0)).getNodeValue().trim() + ",";
                    
                     NodeList ageList = firstOgreElement.getElementsByTagName("resistenciaFechas");
                     Element ageElement = (Element)ageList.item(0);
                     NodeList textAgeList = ageElement.getChildNodes();
                     System.out.println("resistenciaFlechas : " + ((Node)textAgeList.item(0)).getNodeValue().trim());
-                    ogre+=((Node)textAgeList.item(0)).getNodeValue().trim() + ",";
+                    ogresData+=((Node)textAgeList.item(0)).getNodeValue().trim() + ",";
                    
                     NodeList magicList = firstOgreElement.getElementsByTagName("resistenciaMagia");
                     Element magicElement = (Element) magicList.item(0);
                     NodeList textMagicList = magicElement.getChildNodes();
                     System.out.println("resistenciaMagia : " + ((Node)textMagicList.item(0)).getNodeValue().trim());
-                    ogre+=((Node)textMagicList.item(0)).getNodeValue().trim() + ",";
+                    ogresData+=((Node)textMagicList.item(0)).getNodeValue().trim() + ",";
                                        
                     NodeList artList = firstOgreElement.getElementsByTagName("resistenciaArtilleria");
                     Element artElement = (Element)artList.item(0);
                     NodeList textArtList = artElement.getChildNodes();
                     System.out.println("resistenciaArtilleria : " + ((Node)textArtList.item(0)).getNodeValue().trim());
-                    ogre+=((Node)textArtList.item(0)).getNodeValue().trim() + ",";
+                    ogresData+=((Node)textArtList.item(0)).getNodeValue().trim() + ",";
                     
                 }
-                enemies += ogre;
+                genEneiesData += ogresData;
             }
             
-            /*---Elf---*/
+            /*Loop for the listOfEfs. Recover all data into elfsData (String) and concatenates on the genEnemiesData (String).*/
             for(int s=0; s<listOfElfs.getLength() ; s++){
-            	String elf = "E,";
-
+            	String elfsData = "E,";
 
                 Node firstElfNode = listOfElfs.item(s);
                 if(firstElfNode.getNodeType() == Node.ELEMENT_NODE){
@@ -136,40 +139,40 @@ public class XMLManager {
                     Element firstVidaElement = (Element)vidaList.item(0);
                     NodeList textFNList = firstVidaElement.getChildNodes();
                     System.out.println("vida : " + ((Node)textFNList.item(0)).getNodeValue().trim());
-                    elf+=((Node)textFNList.item(0)).getNodeValue().trim() + ",";          
+                    elfsData+=((Node)textFNList.item(0)).getNodeValue().trim() + ",";          
 
                     NodeList lastNameList = firstElfElement.getElementsByTagName("velocidad");
                     Element lastNameElement = (Element)lastNameList.item(0);
                     NodeList textLNList = lastNameElement.getChildNodes();
                     System.out.println("velocidad: " + ((Node)textLNList.item(0)).getNodeValue().trim());
-                    elf+=((Node)textLNList.item(0)).getNodeValue().trim() + ",";
+                    elfsData+=((Node)textLNList.item(0)).getNodeValue().trim() + ",";
                     
                     NodeList ageList = firstElfElement.getElementsByTagName("resistenciaFechas");
                     Element ageElement = (Element)ageList.item(0);
                     NodeList textAgeList = ageElement.getChildNodes();
                     System.out.println("resistenciaFlechas : " + ((Node)textAgeList.item(0)).getNodeValue().trim());
-                    elf+=((Node)textAgeList.item(0)).getNodeValue().trim() + ",";
+                    elfsData+=((Node)textAgeList.item(0)).getNodeValue().trim() + ",";
                     
                     NodeList magicList = firstElfElement.getElementsByTagName("resistenciaMagia");
                     Element magicElement = (Element) magicList.item(0);
                     NodeList textMagicList = magicElement.getChildNodes();
                     System.out.println("resistenciaMagia : " + ((Node)textMagicList.item(0)).getNodeValue().trim());
-                    elf+=((Node)textMagicList.item(0)).getNodeValue().trim() + ",";                  
+                    elfsData+=((Node)textMagicList.item(0)).getNodeValue().trim() + ",";                  
                     
                     NodeList artList = firstElfElement.getElementsByTagName("resistenciaArtilleria");
                     Element artElement = (Element)artList.item(0);
                     NodeList textArtList = artElement.getChildNodes();
                     System.out.println("resistenciaArtilleria : " + ((Node)textArtList.item(0)).getNodeValue().trim());
-                    elf+=((Node)textArtList.item(0)).getNodeValue().trim() + ",";
+                    elfsData+=((Node)textArtList.item(0)).getNodeValue().trim() + ",";
                 }
-                enemies += elf;
+                genEneiesData += elfsData;
             }
 
             
             
-            /*---Harps---*/
+            /*Loop for the listOfHarpies. Recover all data into harpiesData (String) and concatenates on the genEnemiesData (String).*/
             for(int s=0; s<listOfHarpies.getLength() ; s++){
-            	String harpy = "H,";
+            	String harpiesData = "H,";
 
                 Node firstHarpyNode = listOfHarpies.item(s);
                 if(firstHarpyNode.getNodeType() == Node.ELEMENT_NODE){
@@ -180,40 +183,40 @@ public class XMLManager {
                     Element firstVidaElement = (Element)vidaList.item(0);
                     NodeList textFNList = firstVidaElement.getChildNodes();
                     System.out.println("vida : " + ((Node)textFNList.item(0)).getNodeValue().trim());
-                    harpy+=((Node)textFNList.item(0)).getNodeValue().trim() + ",";
+                    harpiesData+=((Node)textFNList.item(0)).getNodeValue().trim() + ",";
 
                     NodeList lastNameList = firstHarpyElement.getElementsByTagName("velocidad");
                     Element lastNameElement = (Element)lastNameList.item(0);
                     NodeList textLNList = lastNameElement.getChildNodes();
                     System.out.println("velocidad: " + ((Node)textLNList.item(0)).getNodeValue().trim());
-                    harpy+=((Node)textLNList.item(0)).getNodeValue().trim() + ",";
+                    harpiesData+=((Node)textLNList.item(0)).getNodeValue().trim() + ",";
 
                     NodeList ageList = firstHarpyElement.getElementsByTagName("resistenciaFechas");
                     Element ageElement = (Element)ageList.item(0);
                     NodeList textAgeList = ageElement.getChildNodes();
                     System.out.println("resistenciaFlechas : " + ((Node)textAgeList.item(0)).getNodeValue().trim());
-                    harpy+=((Node)textAgeList.item(0)).getNodeValue().trim() + ",";
+                    harpiesData+=((Node)textAgeList.item(0)).getNodeValue().trim() + ",";
                     
                     NodeList magicList = firstHarpyElement.getElementsByTagName("resistenciaMagia");
                     Element magicElement = (Element) magicList.item(0);
                     NodeList textMagicList = magicElement.getChildNodes();
                     System.out.println("resistenciaMagia : " + ((Node)textMagicList.item(0)).getNodeValue().trim());
-                    harpy+=((Node)textMagicList.item(0)).getNodeValue().trim() + ",";
+                    harpiesData+=((Node)textMagicList.item(0)).getNodeValue().trim() + ",";
           
                     NodeList artList = firstHarpyElement.getElementsByTagName("resistenciaArtilleria");
                     Element artElement = (Element)artList.item(0);
                     NodeList textArtList = artElement.getChildNodes();
                     System.out.println("resistenciaArtilleria : " + ((Node)textArtList.item(0)).getNodeValue().trim());
-                    harpy+=((Node)textArtList.item(0)).getNodeValue().trim() + ",";
+                    harpiesData+=((Node)textArtList.item(0)).getNodeValue().trim() + ",";
                 }
-                enemies += harpy;
+                genEneiesData += harpiesData;
             }
             
             
             
-            /*---Mercenaries---*/
+            /*Loop for the listOfMercenaries. Recover all data into mercenariesData (String) and concatenates on the genEnemiesData (String).*/
             for(int s=0; s<listOfMercenaries.getLength() ; s++){
-            	String merc = "M,";
+            	String mercenariesData = "M,";
 
                 Node firstMercNode = listOfMercenaries.item(s);
                 if(firstMercNode.getNodeType() == Node.ELEMENT_NODE){
@@ -224,38 +227,37 @@ public class XMLManager {
                     Element firstVidaElement = (Element)vidaList.item(0);
                     NodeList textFNList = firstVidaElement.getChildNodes();
                     System.out.println("vida : " + ((Node)textFNList.item(0)).getNodeValue().trim());
-                    merc+=((Node)textFNList.item(0)).getNodeValue().trim() + ",";
+                    mercenariesData+=((Node)textFNList.item(0)).getNodeValue().trim() + ",";
 
                     NodeList lastNameList = firstMercElement.getElementsByTagName("velocidad");
                     Element lastNameElement = (Element)lastNameList.item(0);
                     NodeList textLNList = lastNameElement.getChildNodes();
                     System.out.println("velocidad: " + ((Node)textLNList.item(0)).getNodeValue().trim());
-                    merc+=((Node)textLNList.item(0)).getNodeValue().trim() + ",";
+                    mercenariesData+=((Node)textLNList.item(0)).getNodeValue().trim() + ",";
                     
                     NodeList ageList = firstMercElement.getElementsByTagName("resistenciaFechas");
                     Element ageElement = (Element)ageList.item(0);
                     NodeList textAgeList = ageElement.getChildNodes();
                     System.out.println("resistenciaFlechas : " + ((Node)textAgeList.item(0)).getNodeValue().trim());
-                    merc+=((Node)textAgeList.item(0)).getNodeValue().trim() + ",";
+                    mercenariesData+=((Node)textAgeList.item(0)).getNodeValue().trim() + ",";
                     
                     NodeList magicList = firstMercElement.getElementsByTagName("resistenciaMagia");
                     Element magicElement = (Element) magicList.item(0);
                     NodeList textMagicList = magicElement.getChildNodes();
                     System.out.println("resistenciaMagia : " + ((Node)textMagicList.item(0)).getNodeValue().trim());
-                    merc+=((Node)textMagicList.item(0)).getNodeValue().trim() + ",";                
+                    mercenariesData+=((Node)textMagicList.item(0)).getNodeValue().trim() + ",";                
                     
                     NodeList artList = firstMercElement.getElementsByTagName("resistenciaArtilleria");
                     Element artElement = (Element)artList.item(0);
                     NodeList textArtList = artElement.getChildNodes();
                     System.out.println("resistenciaArtilleria : " + ((Node)textArtList.item(0)).getNodeValue().trim());
-                    merc+=((Node)textArtList.item(0)).getNodeValue().trim() + ","; 
+                    mercenariesData+=((Node)textArtList.item(0)).getNodeValue().trim() + ","; 
                 }
-                enemies += merc;
+                genEneiesData += mercenariesData;
             }
 
-            System.out.println(enemies);
+            System.out.println(genEneiesData);
             
-
         }catch (SAXParseException err) {
         System.out.println ("** Parsing error" + ", line " + err.getLineNumber () + ", uri " + err.getSystemId ());
         System.out.println(" " + err.getMessage ());
@@ -268,6 +270,6 @@ public class XMLManager {
         t.printStackTrace ();
         }
 		
-		return enemies;
+		return genEneiesData;
 	}
 }

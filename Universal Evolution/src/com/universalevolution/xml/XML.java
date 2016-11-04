@@ -17,16 +17,26 @@ import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * Handles the XML Files. 
+ * Created by Fernanda on 21/9/20. Updated by Randy on 4/10/16.
+ * 
+ * @author Fernanda
+ *
+ */
 public abstract class XML {
 	
     String nombreXML;
     Document documento;
     //Main Node
     Element raiz;
+   
     
     /**
-     * contructor de la clase
-     * @param name: string con el nombre del archivo XML
+     * Constructor. The parameter name (String) is the 
+     * name of the XML File. 
+     * 
+     * @param name
      */
 
     public XML(String name){
@@ -52,7 +62,7 @@ public abstract class XML {
     }
     
     /**
-     * Funcion que se encarga de cerrar el archivo XML cuando se termina de añadir información.
+     * Closes the XML FIle once all the data have been added into it.
      * 
      * @throws TransformerConfigurationException
      * @throws TransformerException

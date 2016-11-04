@@ -8,7 +8,10 @@ import javax.xml.transform.TransformerException;
 import java.util.Vector;
 
 /**
- * Created by Fernanda on 21/09/16.
+ * Creates the XML Files and handles the data inside them.
+ * Created by Fernanda on 21/09/16. Updated by Randy on 4/10/16.
+ * 
+ * @author Fernanda 
  */
 
 public class XMLGenerations extends XML {
@@ -16,8 +19,8 @@ public class XMLGenerations extends XML {
     Element raiz;
 
     /**
-     * esta funcion se encarga de crear un XML que almacena
-     * los datos del dispositivo
+     * Creates an XML File that keeps all the data.
+     * 
      * @param nombreXML
      */
 
@@ -31,13 +34,13 @@ public class XMLGenerations extends XML {
     }
 
     /**
-     * Funcion que añade un la información de las generaciones nuevo al xml
+     * Adds the information of the generations inro the XML File. 
      * 
      * @param enemigo
      * @throws TransformerConfigurationException
      * @throws TransformerException
      */
-    public void añadirGen(String enemigo[]) throws TransformerException{	
+    public void addGen(String enemigo[]) throws TransformerException{	
     	
     	if(enemigo[0].equals(("O"))){
     	
