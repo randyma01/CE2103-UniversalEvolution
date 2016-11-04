@@ -11,7 +11,7 @@ import java.util.Vector;
  * Created by Fernanda on 21/09/16.
  */
 
-public class XMLgenerations extends XML {
+public class XMLGenerations extends XML {
     Document documento;
     Element raiz;
 
@@ -21,7 +21,7 @@ public class XMLgenerations extends XML {
      * @param nombreXML
      */
 
-    public XMLgenerations(String nombreXML) {
+    public XMLGenerations(String nombreXML) {
         super(nombreXML);
         //Obtenemos la referencia al documento que queremos modificar
         this.documento = super.documento;

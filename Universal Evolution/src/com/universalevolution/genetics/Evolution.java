@@ -111,7 +111,7 @@ public class Evolution {
 			int magicResistance = enemyN.getMagicResistance();
 			int artilleryResistance = enemyN.getArtilleryResistance();
 			int speed = enemyN.getSpeed();
-			tempInfo = name + ", " + life + ", " + arrowResistance + ", " + magicResistance + ", " + artilleryResistance + ", " + speed + ",";
+			tempInfo = name + "," + life + "," + speed + "," + arrowResistance + "," + magicResistance + "," + artilleryResistance + ",";
 			info += tempInfo;
 		}
 		return info;
@@ -274,7 +274,7 @@ public class Evolution {
 	public String createIdentificator(String name){
 		String newEnemyType = "";
 		if (name.equals("Elf")){
-			newEnemyType = "E";
+			newEnemyType = "D";
 		}else if(name.equals("Harpy")){
 			newEnemyType = "H";
 		}else if(name.equals("Mercenary")){

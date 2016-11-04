@@ -1,21 +1,70 @@
+package com.universalevolution.xml;
+
 import java.io.File;
-import org.w3c.dom.Document;
-import org.w3c.dom.*;
+import java.util.Vector;
 
-
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.TransformerException;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
-public class Main{
+/**
+ * Separates elements inside the String. 
+ * 
+ * @autor Fernanda, Ricardo on 15/09/16.
+ */
+public class XMLManager {
 
-    public static void main (String argv []){
-    
-    	
-    	try {
-    		
-    		String enemies = "";
+	String arrayParameter[] = {"", "", "", "", "", ""};
+	//XMLgenerations f = new XMLgenerations("generacion");
+		
+	
+	/**
+	 * Separate the characters inside a String.
+	 * 
+	 * @param xml
+	 * @throws TransformerException
+	 */
+	public void XMLFileWriter(String xml, int genNum) throws TransformerException{
+		
+		XMLGenerations f = new XMLGenerations("generacion" + genNum);
+		String delimiter = ",";
+		int pos = 0;
+		int cantidad = 0;
+		String[] tokens = xml.split(delimiter);
+		while(pos < tokens.length){
+			for (int i = 0; i < 6; i++){
+				while(true){
+					arrayParameter[i] = tokens[pos];
+					pos++;
+					if (i < 6){
+						break;
+					}
+				}
+			}
+		f.añadirGen(arrayParameter);
+		System.out.println("Cantidad enemigos " + cantidad);
+		cantidad++;
+		}
+	}
+	
+	
+	/**
+	 * It reads an XML with the generation data, keep and 
+	 * save the values of each enemy and returns them as
+	 * a String. 
+	 * 
+	 * @return enemies
+	 */
+	public String XMLFileReader(){
+		String enemies = "";
+		try {
     		File file = new File("/home/randy/generacion3.xml"); 
             DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
@@ -205,6 +254,7 @@ public class Main{
             }
 
             System.out.println(enemies);
+            
 
         }catch (SAXParseException err) {
         System.out.println ("** Parsing error" + ", line " + err.getLineNumber () + ", uri " + err.getSystemId ());
@@ -217,9 +267,7 @@ public class Main{
         }catch (Throwable t) {
         t.printStackTrace ();
         }
-        //System.exit (0);
-
-    }//end of main
-
-
+		
+		return enemies;
+	}
 }
